@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 import com.suportehe.controller.PessoaController;
 import com.suportehe.enums.EspecialidadeMedica;
 import com.suportehe.exception.ExceptionSistemaHepp;
+import com.suportehe.model.Endereco;
 import com.suportehe.model.PessoaMedica;
 
 import junit.framework.TestCase;
@@ -39,7 +40,40 @@ public class TestePessoaUsuario extends TestCase {
 		pessoaMedica.setTipoPessoa("MEDICO");
 		pessoaMedica.setEspecialidadeMedica(EspecialidadeMedica.ANESTESISTA);
 		
-		pessoaController.salvarPMedica(pessoaMedica);
+		Endereco endereco1 = new Endereco();
+		endereco1.setBairro("Primavera");
+		endereco1.setCep("19274-000");
+		endereco1.setComplemento("Quadra 150");
+		endereco1.setCidade("Rosana");
+		endereco1.setEmpresa(pessoaMedica);
+		endereco1.setNumero("84");
+		endereco1.setPessoa(pessoaMedica);
+		endereco1.setRua("Rua Diamanatina");
+		endereco1.setUf("SP");
+		
+		Endereco endereco2 = new Endereco();
+		endereco2.setBairro("Primavera");
+		endereco2.setCep("19274-000");
+		endereco2.setComplemento("Quadra 100");
+		endereco2.setCidade("Rosana");
+		endereco2.setEmpresa(pessoaMedica);
+		endereco2.setNumero("100");
+		endereco2.setPessoa(pessoaMedica);
+		endereco2.setRua("Rua Comércio");
+		endereco2.setUf("SP");
+		
+		pessoaMedica.getEnderecos().add(endereco2);
+		pessoaMedica.getEnderecos().add(endereco1);
+		
+		pessoaMedica = pessoaController.salvarPMedica(pessoaMedica).getBody();
+		
+		assertEquals(true, pessoaMedica.getId() > 0);
+		
+		for (Endereco endereco : pessoaMedica.getEnderecos()) {
+			assertEquals(true, endereco.getId() > 0);
+		}
+		
+		assertEquals(2, pessoaMedica.getEnderecos().size());
 		
 		/*PessoaPac pessoaPac = new PessoaPac();
 		
