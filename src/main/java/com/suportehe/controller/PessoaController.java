@@ -15,10 +15,10 @@ import com.suportehe.service.PessoaUserService;
 
 @RestController
 public class PessoaController {
-	
+
 	@Autowired
 	private PessoaRepository pessoaRepository;
-	
+
 	@Autowired
 	private PessoaUserService pessoaUserService;
 
@@ -34,6 +34,11 @@ public class PessoaController {
 			throw new ExceptionSistemaHepp("Já existe CNPJ cadastrado: " + pessoaMedica.getCnpj());
 		}
 		
+		
+	    if (pessoaMedica.getId() == null && pessoaRepository.existeCrmCadastrado(pessoaMedica.getCrm()) != null) {
+		  throw new ExceptionSistemaHepp("Existe um CRM já cadastrado: " + pessoaMedica.getCrm()); 
+		  }
+		 		
 		pessoaMedica = pessoaUserService.salvarPessoaMedica(pessoaMedica);
 		
 		

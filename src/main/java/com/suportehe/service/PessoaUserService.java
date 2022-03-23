@@ -1,16 +1,12 @@
 package com.suportehe.service;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
-
-import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.suportehe.model.Endereco;
 import com.suportehe.model.PessoaMedica;
 import com.suportehe.model.Usuario;
 import com.suportehe.repository.PessoaRepository;

@@ -10,8 +10,12 @@ import com.suportehe.model.PessoaMedica;
 
 @Repository
 @Transactional
-public interface PessoaRepository extends JpaRepository<PessoaMedica, Long>{
+public interface PessoaRepository extends JpaRepository<PessoaMedica, Long> {
 
 	@Query(value = "select pm from PessoaMedica pm where pm.cnpj = ?1")
 	public PessoaMedica existeCnpjCadastrado(String cnpj);
+
+	@Query(value = "select pm from PessoaMedica pm where pm.crm = ?1")
+	public PessoaMedica existeCrmCadastrado(String crm);
+
 }
