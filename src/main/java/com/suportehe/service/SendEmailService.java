@@ -17,7 +17,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ServiceSendEmail {
+public class SendEmailService {
 	
 	private String userName = "adcsistemas.tecnology@gmail.com";
 	private String senha = "Chaves135121";

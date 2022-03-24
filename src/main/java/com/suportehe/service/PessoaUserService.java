@@ -25,7 +25,7 @@ public class PessoaUserService {
 	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
-	private ServiceSendEmail serviceSendEmail;
+	private SendEmailService sendEmailService;
 	
 	
 	public PessoaMedica salvarPessoaMedica(PessoaMedica pessoaMedica) {
@@ -61,7 +61,8 @@ public class PessoaUserService {
 			
 			usuarioPm = usuarioRepository.save(usuarioPm);
 			
-			usuarioRepository.insereAcessoUserPm(usuarioPm.getId());
+			usuarioRepository.insereAcessoUserPm(usuarioPm.getId(), "ROLE_USER");
+			usuarioRepository.insereAcessoUserPm(usuarioPm.getId(), "ROLE_ADMIN");
 			
 			StringBuilder mensagemHtml = new StringBuilder();
 			
@@ -72,7 +73,7 @@ public class PessoaUserService {
 			
 			
 			try {
-				serviceSendEmail.enviarEmailHtml("Acesso ao Sistema HEPP Liberado", mensagemHtml.toString(), pessoaMedica.getEmail());
+				sendEmailService.enviarEmailHtml("Acesso ao Sistema HEPP Liberado", mensagemHtml.toString(), pessoaMedica.getEmail());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

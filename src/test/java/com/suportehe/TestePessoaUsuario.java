@@ -30,8 +30,8 @@ public class TestePessoaUsuario extends TestCase {
 		
 		pessoaMedica.setNome("Anderson Chaves PM");
 		pessoaMedica.setCnpj("" + Calendar.getInstance().getTimeInMillis());
-		pessoaMedica.setEmail("achaves@gmail.com");
-		pessoaMedica.setCrm("11111111111-SP");
+		pessoaMedica.setEmail("denisemendonca825@gmail.com");
+		pessoaMedica.setCrm("" + Calendar.getInstance().getTimeInMillis());
 		pessoaMedica.setTelefone("1898989666767");
 		pessoaMedica.setInsc_estadual("3551551515");
 		pessoaMedica.setInsc_municipal("1551548751565");
