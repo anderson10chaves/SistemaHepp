@@ -1,7 +1,6 @@
 package com.suportehe.service;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -22,8 +21,8 @@ public class TarefaAutomatizadaService {
 	@Autowired
 	private SendEmailService sendEmailService;
 	
-	@Scheduled(initialDelay = 2000, fixedDelay = 86400000) /*Roda cada 24hrs*/
-	//@Scheduled(cron = "0 0 11 * * *", zone = "America/Sao_Paulo") /*Roda todos os dias as 11hrs*/
+	//@Scheduled(initialDelay = 2000, fixedDelay = 86400000) /*Roda cada 24hrs*/
+	@Scheduled(cron = "0 0 11 * * *", zone = "America/Sao_Paulo") /*Roda todos os dias as 11hrs*/
 	public void notificarUserTrocaSenha() throws UnsupportedEncodingException, MessagingException, InterruptedException {
 		
 		List<Usuario> usuarios = usuarioRepository.usuarioSenhaVencida();
