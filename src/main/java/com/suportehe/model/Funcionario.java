@@ -30,20 +30,20 @@ public class Funcionario extends Pessoa {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(columnDefinition = "text", nullable = false)
+	@Column(columnDefinition = "text", nullable = true)
 	private String imagemOriginal;
 
-	@Column(columnDefinition = "text", nullable = false)
+	@Column(columnDefinition = "text", nullable = true)
 	private String imagemMiniatura;
 
 	@Column(nullable = false)
 	private String sobrenome;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	@Temporal(TemporalType.DATE)
 	private Date dataContratacao;
 
@@ -78,14 +78,6 @@ public class Funcionario extends Pessoa {
 	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
-
-	@ManyToOne
-	@JoinColumn(name = "funcao_funcionario_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "funcao_funcionario_fk"))
-	private Funcao_Funcionario funcao_Funcionario;
-
-	@ManyToOne
-	@JoinColumn(name = "setores_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "setores_fk"))
-	private Setores setores;
 
 	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
@@ -218,22 +210,6 @@ public class Funcionario extends Pessoa {
 		this.sexo = sexo;
 	}
 
-	public Funcao_Funcionario getFuncao_Funcionario() {
-		return funcao_Funcionario;
-	}
-
-	public void setFuncao_Funcionario(Funcao_Funcionario funcao_Funcionario) {
-		this.funcao_Funcionario = funcao_Funcionario;
-	}
-
-	public Setores getSetores() {
-		return setores;
-	}
-
-	public void setSetores(Setores setores) {
-		this.setores = setores;
-	}
-
 	public StatusFuncionario getStatus() {
 		return status;
 	}
@@ -253,7 +229,5 @@ public class Funcionario extends Pessoa {
 	public void setEmpresa(Pessoa empresa) {
 		this.empresa = empresa;
 	}
-	
-	
 
 }

@@ -50,7 +50,7 @@ public class ControllerException extends ResponseEntityExceptionHandler {
 			for (ObjectError objectError : list) {
 				msg += objectError.getDefaultMessage() + "\n";
 			}
-		} if(ex instanceof HttpMessageNotReadableException) {
+		} else if(ex instanceof HttpMessageNotReadableException) {
 			msg = "Cadastro está vazio, preencha os dados e complete o cadastro!";
 		} else {
 			msg = "Erro no servidor" + ex.getMessage();

@@ -29,20 +29,19 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	String consultaConstraintAcesso();
 
 	// metodo que cadastra uma unica role
-	/*
-	 * @Transactional
-	 * 
-	 * @Modifying
-	 * 
-	 * @Query(nativeQuery = true, value =
-	 * "insert into usuarios_acesso(usuario_id, acesso_id) values (?1, (select id from acesso where descricao = 'ROLE_USER'))"
-	 * ) void insereAcessoUserPm(Long iduser);
-	 */
+	
+	
+	  @Transactional
+	  @Modifying
+	  @Query(nativeQuery = true, value = "insert into usuarios_acesso(usuario_id, acesso_id) values (?1, (select id from acesso where descricao = 'ROLE_USER'))")
+	  void insereAcessoUser(Long iduser);
+	 
+	 
 	
 	// metodo de cadastro de roles dinamicas
 	@Transactional
 	@Modifying
 	@Query(nativeQuery = true, value = "insert into usuarios_acesso(usuario_id, acesso_id) values (?1, (select id from acesso where descricao = ?2 limit 1))")
-	void insereAcessoUserPm(Long iduser, String acesso);
+	void insereAcessoUser(Long iduser, String acesso);
 
 }

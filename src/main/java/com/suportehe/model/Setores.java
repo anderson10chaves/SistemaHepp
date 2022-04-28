@@ -28,9 +28,17 @@ public class Setores implements Serializable {
 	private String descricao;
 	
 	@ManyToOne(targetEntity = Pessoa.class)
+	@JoinColumn(name = "pessoa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_id_fk"))
+	private Pessoa pessoa;
+	
+	@ManyToOne(targetEntity = Pessoa.class)
 	@JoinColumn(name = "empresa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "empresa_id_fk"))
 	private Pessoa empresa;
-
+	
+//	@ManyToOne(targetEntity = Pessoa.class)
+//	@JoinColumn(name = "funcionario_id", nullable = true, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "funcionario_id_fk"))
+//	private Pessoa funcionario;
+	
 	public Long getId() {
 		return id;
 	}
@@ -47,7 +55,13 @@ public class Setores implements Serializable {
 		this.descricao = descricao;
 	}
 	
-	
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
 
 	public Pessoa getEmpresa() {
 		return empresa;
@@ -56,6 +70,13 @@ public class Setores implements Serializable {
 	public void setEmpresa(Pessoa empresa) {
 		this.empresa = empresa;
 	}
+
+	/*
+	 * public Pessoa getFuncionario() { return funcionario; }
+	 * 
+	 * public void setFuncionario(Pessoa funcionario) { this.funcionario =
+	 * funcionario; }
+	 */
 
 	@Override
 	public int hashCode() {

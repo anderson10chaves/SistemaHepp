@@ -49,7 +49,7 @@ class SistemaHeppApplicationTests extends TestCase {
 
 		Acesso acesso = new Acesso();
 
-		acesso.setDescricao("ROLE_COMPRADOR" + Calendar.getInstance().getTimeInMillis());
+		acesso.setDescricao("ROLE_USER" + Calendar.getInstance().getTimeInMillis());
 
 		ObjectMapper objectMapper = new ObjectMapper();
 
